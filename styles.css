@@ -130,7 +130,6 @@ body {
     text-shadow: none;
     box-shadow: 0 0 20px rgba(0, 127, 255, 0.4);
     position: relative;
-    z-index: 3;
     transform: translateY(1rem);
 }
 
@@ -199,8 +198,6 @@ body {
         padding: 1rem 2rem;
         font-size: 1.2rem;
         transform: translateY(0);
-        position: relative;
-        z-index: 4;
     }
 
     .landing-image {
