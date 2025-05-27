@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esfera de Plasma - Proyecto Física</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cooper+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/britannic-bold" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="aurora-canvas"></canvas>
+
+    <!-- Canvas de fondo para partículas animadas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Canvas de fondo para rayos eléctricos dinámicos -->
+    <canvas id="electric-canvas"></canvas>
+
+    <!-- Fondo SVG de rayos eléctricos -->
+    <svg class="electric-bg" width="100%" height="100%" viewBox="0 0 1920 1080" preserveAspectRatio="none" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;">
+      <polyline points="100,200 300,250 500,180 700,300 900,220 1100,350 1300,200 1500,280 1700,180" stroke="#00A3FF" stroke-width="6" fill="none" opacity="0.18"/>
+      <polyline points="200,800 400,700 600,900 800,750 1000,950 1200,800 1400,900 1600,700 1800,850" stroke="#FF2D95" stroke-width="4" fill="none" opacity="0.13"/>
+      <polyline points="300,400 600,500 900,420 1200,600 1500,500 1800,600" stroke="#D147FF" stroke-width="5" fill="none" opacity="0.12"/>
+    </svg>
+
+    <!-- Landing Page -->
+    <section id="landing" class="section active">
+        <div class="landing-content">
+            <h1>Esfera de Plasma</h1>
+            <p>Un viaje fascinante al mundo de la física y la electricidad</p>
+            <img src="imagenes/imagen-4.jpeg" alt="Esfera de Plasma" class="landing-image">
+            <button class="start-button" onclick="startJourney()">COMENZAR</button>
+        </div>
+    </section>
+
+    <!-- Introducción Section -->
+    <section id="introduccion" class="section">
+        <div class="content">
+            <h2>INTRODUCCIÓN</h2>
+            
+            <div class="content-grid">
+                <div class="info-card" data-title="¿Qué es una lámpara de plasma?" data-content="Una lámpara de plasma, también conocida como esfera de plasma o bola de plasma, es un dispositivo que contiene gases nobles a baja presión que se iluminan cuando se aplica electricidad de alto voltaje.">
+                    <h3>¿Qué es una lámpara de plasma?</h3>
+                </div>
+                <div class="info-card" data-title="¿Cómo funciona una lámpara de plasma?" data-content="El funcionamiento se basa en la ionización de los gases nobles dentro de la esfera, creando hermosos rayos de luz que siguen el movimiento de la mano o cualquier objeto conductor.">
+                    <h3>¿Cómo funciona una lámpara de plasma?</h3>
+                </div>
+                <div class="info-card" data-title="¿Para qué sirve una lámpara de plasma?" data-content="Además de ser un objeto decorativo fascinante, la esfera de plasma es una excelente herramienta educativa para entender conceptos de electricidad, gases y fenómenos electromagnéticos.">
+                    <h3>¿Para qué sirve una lámpara de plasma?</h3>
+                </div>
+            </div>
+
+            <button class="plasma-sphere-btn" onclick="navigateTo('fundamentos')"></button>
+        </div>
+    </section>
+
+    <!-- Objetivos Section -->
+    <section id="objetivos" class="section">
+        <div class="content">
+            <h2>OBJETIVOS DEL PROYECTO</h2>
+            
+            <div class="content-grid">
+                <div class="info-card" data-title="Objetivo General" data-content="Diseñar y construir una esfera de plasma funcional que demuestre los principios fundamentales de la electricidad y el plasma, permitiendo comprender los fenómenos electromagnéticos de manera práctica y visual.">
+                    <h3>Objetivo General</h3>
+                </div>
+
+                <div class="info-card" data-title="Objetivos Específicos" data-content="<ul><li>Comprender los principios básicos de la electricidad y el plasma</li><li>Investigar el funcionamiento de las esferas de plasma comerciales</li><li>Seleccionar los materiales adecuados para la construcción</li><li>Implementar medidas de seguridad necesarias</li><li>Construir una esfera de plasma funcional y segura</li><li>Documentar el proceso de construcción y los resultados obtenidos</li></ul>">
+                    <h3>Objetivos Específicos</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fundamentos Teóricos Section -->
+    <section id="fundamentos" class="section">
+        <div class="content">
+            <h2>FUNDAMENTO TEÓRICO</h2>
+            
+            <div class="content-grid">
+                <div class="info-card" data-title="NIKOLA TESLA" data-content="Nikola Tesla fue un inventor, ingeniero eléctrico y físico serbio-estadounidense, conocido por sus contribuciones al diseño del sistema moderno de suministro de electricidad de corriente alterna. Sus investigaciones sobre la electricidad de alto voltaje y la transmisión inalámbrica de energía fueron fundamentales para el desarrollo de dispositivos como la esfera de plasma.">
+                    <h3>NIKOLA TESLA</h3>
+                </div>
+
+                <div class="info-card" data-title="BOLA DE PLASMA" data-content="La bola de plasma es un dispositivo que demuestra los principios de la electricidad y el plasma. El plasma, considerado el cuarto estado de la materia, se forma cuando los gases nobles dentro de la esfera se ionizan debido al alto voltaje aplicado. Los rayos de luz que vemos son en realidad corrientes eléctricas que siguen el camino de menor resistencia a través del gas ionizado.">
+                    <h3>BOLA DE PLASMA</h3>
+                </div>
+            </div>
+
+            <button class="plasma-sphere-btn" onclick="navigateTo('materiales')">
+              <svg class="plasma-rays" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline class="ray ray1" points="35,10 38,25 32,30 36,40 34,55" stroke="#00A3FF" stroke-width="2.5" fill="none"/>
+                <polyline class="ray ray2" points="35,15 30,28 40,35 33,50" stroke="#FF2D95" stroke-width="2" fill="none"/>
+                <polyline class="ray ray3" points="35,20 37,32 29,38 38,55" stroke="#D147FF" stroke-width="1.7" fill="none"/>
+              </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Materiales Section -->
+    <section id="materiales" class="section">
+        <div class="content">
+            <h2>MATERIALES Y HERRAMIENTAS</h2>
+            
+            <div class="content-grid">
+                <div class="info-card" data-title="Materiales Necesarios" data-content="<ul><li>Esfera de vidrio transparente</li><li>Electrodo central (generalmente de metal)</li><li>Gases nobles (neón, argón o mezcla)</li><li>Fuente de alto voltaje</li><li>Cables conductores</li><li>Base de soporte</li><li>Materiales aislantes</li></ul>">
+                    <h3>Materiales Necesarios</h3>
+                </div>
+
+                <div class="info-card" data-title="Herramientas Requeridas" data-content="<ul><li>Soldador y estaño</li><li>Destornilladores</li><li>Pinzas</li><li>Multímetro</li><li>Bomba de vacío</li><li>Equipo de seguridad (guantes, gafas)</li></ul>">
+                    <h3>Herramientas Requeridas</h3>
+                </div>
+            </div>
+
+            <button class="plasma-sphere-btn" onclick="navigateTo('procedimiento')">
+              <svg class="plasma-rays" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline class="ray ray1" points="35,10 38,25 32,30 36,40 34,55" stroke="#00A3FF" stroke-width="2.5" fill="none"/>
+                <polyline class="ray ray2" points="35,15 30,28 40,35 33,50" stroke="#FF2D95" stroke-width="2" fill="none"/>
+                <polyline class="ray ray3" points="35,20 37,32 29,38 38,55" stroke="#D147FF" stroke-width="1.7" fill="none"/>
+              </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Procedimiento Section -->
+    <section id="procedimiento" class="section">
+        <div class="content">
+            <h2>PROCEDIMIENTO</h2>
+            
+            <div class="content-grid">
+                <div class="info-card" data-title="Pasos para la Construcción" data-content="<ol><li>Preparar la esfera de vidrio y asegurar que esté limpia</li><li>Instalar el electrodo central en la base</li><li>Conectar la fuente de alto voltaje</li><li>Crear el vacío en la esfera</li><li>Introducir los gases nobles</li><li>Sellar la esfera herméticamente</li><li>Probar el funcionamiento</li><li>Implementar medidas de seguridad</li></ol>">
+                    <h3>Pasos para la Construcción</h3>
+                </div>
+
+                <div class="info-card" data-title="Medidas de Seguridad" data-content="<ul><li>Usar siempre equipo de protección</li><li>Trabajar en un área bien ventilada</li><li>Mantener la fuente de voltaje alejada del agua</li><li>No tocar la esfera mientras está en funcionamiento</li><li>Mantener el dispositivo fuera del alcance de niños</li></ul>">
+                    <h3>Medidas de Seguridad</h3>
+                </div>
+            </div>
+
+            <button class="plasma-sphere-btn" onclick="navigateTo('esquema')">
+              <svg class="plasma-rays" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline class="ray ray1" points="35,10 38,25 32,30 36,40 34,55" stroke="#00A3FF" stroke-width="2.5" fill="none"/>
+                <polyline class="ray ray2" points="35,15 30,28 40,35 33,50" stroke="#FF2D95" stroke-width="2" fill="none"/>
+                <polyline class="ray ray3" points="35,20 37,32 29,38 38,55" stroke="#D147FF" stroke-width="1.7" fill="none"/>
+              </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Esquema Section -->
+    <section id="esquema" class="section">
+        <div class="content">
+            <h2>ESQUEMA</h2>
+            
+            <div class="content-grid">
+                <div class="info-card" data-title="Diagrama del Circuito" data-content="<img src='imagenes/esquema-circuito.jpg' alt='Esquema del Circuito' class='esquema-image'><p>El esquema muestra la conexión entre la fuente de alto voltaje, el electrodo central y la esfera de vidrio. La corriente eléctrica fluye desde la fuente a través del electrodo, ionizando los gases nobles dentro de la esfera.</p>">
+                    <h3>Diagrama del Circuito</h3>
+                </div>
+            </div>
+
+            <button class="plasma-sphere-btn" onclick="navigateTo('conclusiones')">
+              <svg class="plasma-rays" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline class="ray ray1" points="35,10 38,25 32,30 36,40 34,55" stroke="#00A3FF" stroke-width="2.5" fill="none"/>
+                <polyline class="ray ray2" points="35,15 30,28 40,35 33,50" stroke="#FF2D95" stroke-width="2" fill="none"/>
+                <polyline class="ray ray3" points="35,20 37,32 29,38 38,55" stroke="#D147FF" stroke-width="1.7" fill="none"/>
+              </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Conclusiones Section -->
+    <section id="conclusiones" class="section">
+        <div class="content">
+            <h2>CONCLUSIONES</h2>
+            
+            <div class="content-grid">
+                <div class="info-card" data-title="Logros y Aprendizajes" data-content="La construcción de la esfera de plasma nos ha permitido comprender de manera práctica los principios de la electricidad y el plasma. Hemos logrado crear un dispositivo funcional que demuestra estos conceptos de manera visual y atractiva.">
+                    <h3>Logros y Aprendizajes</h3>
+                </div>
+                <div class="info-card" data-title="Recomendaciones" data-content="<ul><li>Mantener el dispositivo en un lugar seguro y estable</li><li>Realizar mantenimiento periódico</li><li>Documentar cualquier modificación o mejora</li><li>Compartir el conocimiento adquirido con otros estudiantes</li></ul>">
+                    <h3>Recomendaciones</h3>
+                </div>
+            </div>
+
+            <button class="plasma-sphere-btn" onclick="navigateTo('landing')">
+              <svg class="plasma-rays" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline class="ray ray1" points="35,10 38,25 32,30 36,40 34,55" stroke="#00A3FF" stroke-width="2.5" fill="none"/>
+                <polyline class="ray ray2" points="35,15 30,28 40,35 33,50" stroke="#FF2D95" stroke-width="2" fill="none"/>
+                <polyline class="ray ray3" points="35,20 37,32 29,38 38,55" stroke="#D147FF" stroke-width="1.7" fill="none"/>
+              </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Modal overlay for card content -->
+    <div id="card-modal" class="card-modal-overlay" style="display:none;">
+        <div class="card-modal-content">
+            <span class="card-modal-close">&times;</span>
+            <h3 id="modal-title"></h3>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
